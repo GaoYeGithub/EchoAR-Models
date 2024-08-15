@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS (Styling) -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- Our own custom styles -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Our own custom scripts -->
+    <script defer src="./script.js"></script>
+
+    <!-- Edge/Firefox WebComponent Support -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+    <!-- Intersection Observer polyfill -- better performance Safari/IE11 -->
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <!-- Improves Resize Behavior for non-chrome browsers -->
+    <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.js"></script>
+    <!-- Polyfill for full Screen to fully support AR -->
+    <script src="https://unpkg.com/fullscreen-polyfill@1.0.2/dist/fullscreen.polyfill.js"></script>
+    <!-- Magic Leap support -->
+    <script src="https://unpkg.com/@magicleap/prismatic/prismatic.min.js"></script>
+    <!-- Removes focus from some input types -->
+    <script
+      src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js"
+      defer
+    ></script>
+    <!-- Loads modal viewer for modern browsers -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"
+    ></script>
+    <!-- Loads modal viewer for old browsers -->
+    <script
+      nomodule
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="buttons">
+      <button class="btn btn-primary" onclick="switchModel('car')">Car</button>
+      <button class="btn btn-primary" onclick="switchModel('skyscraper')">Skyscraper</button>
+      <button class="btn btn-primary" onclick="switchModel('tree')">Tree</button>
+    </div>
+    <form onsubmit="event.preventDefault(); addModel(this.model.value, this.src.value, this.iosSrc.value);">
+      <input placeholder="Model Name" name="model">
+      <input placeholder="Source" name="src">
+      <input placeholder="IOS Source" name="iosSrc">
+      <button class="btn btn-secondary">Add new model</button>
+    </form>
+    <model-viewer
+      alt="3D Model"
+      quick-look-browsers="safari chrome"
+      camera-controls
+      auto-rotate
+      ar
+      unstable-webxr
+      preload
+      shadow-intensity="1"
+      loading="eager"
+      id="modal-viewer"
+    >
+      <button slot="ar-button" id="ar-btn" class="btn btn-primary">See in AR</button>
+    </model-viewer>
+  </body>
+</html>

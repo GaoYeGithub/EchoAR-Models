@@ -1,0 +1,9 @@
+#modal-viewer {
+  width: 100%; 
+  height: 40rem; 
+  background-color: #203864;
+}
+
+.btn {
+  margin: 5px;
+}
